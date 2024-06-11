@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All files</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/
+	4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/
+		jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/
+		umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/
+		bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container h-100">
+    <h1 class="mt-5">Upload Files</h1>
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-7 table-responsive">
+            <form method="POST" enctype="multipart/form-data" action="/">
+                <div class="form-group">
+                    <label for="files">Select files to upload</label>
+                    <input type="file" class="form-control" id="files" name="files" multiple required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+            <form method="POST" action="/deleteAll">
+                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Are you sure?')">Delete All Files</button>
+            </form>
+            <table id="customerTable" class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>File Name</th>
+                    <th>File Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="file: ${allFiles}">
+                    <td th:text="${file.id}"></td>
+                    <td th:text="${file.fileName}"></td>
+                    <td th:text="${file.fileType}"></td>
+                    <td>
+                        <form method="POST" action="/delete">
+                            <input type="hidden" name="id" th:value="${file.id}"/>
+                            <button type="submit" class="btn btn-danger"  onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <hr>
+            <div>
+                <a href="/" class="btn btn-light btn-block"
+                   role="button">Back to Upload Form</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>File Upload</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    input[type=file], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #1affff;
+    }
+
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 45%;
+        cursor: pointer;
+    }
+
+    .button4 {
+        border-radius: 10px;
+    }
+
+    div {
+        border-radius: 5px;
+        background-color: #a6a6a6;
+        padding: 10px;
+        width: 50%;
+        margin: auto;
+    }
+</style>
+<body>
+<div class="container">
+    <h1 class="mt-5">Upload Files</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="files">Select files to upload</label>
+            <input type="file" class="form-control" id="files" name="files" multiple required>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+        <div th:if="${message}" class="alert alert-info mt-3">
+            <span th:text="${message}">An error occurred. Please try again later.</span>
+        </div>
+    </form>
+</div>
+</body>
+</html>
